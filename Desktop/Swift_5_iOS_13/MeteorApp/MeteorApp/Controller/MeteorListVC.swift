@@ -9,38 +9,40 @@ import UIKit
 import Foundation
 
 class MeteorListVC: UIViewController {
-
+    
     // Initialize the varibales and outlets
     @IBOutlet weak var MeteorListTableView: UITableView!
+    private var repository = MeteorRepository()
     var meteorList = [Meteor]()
-    var metorNameArr = [String]()
-    var meteorYearArr = [String]()
-    typealias MeteorsListCallBack =  ([Meteor]?, _ status:Bool, _ message:String) -> Void
-    var getMeteorListData: ((MeteorsListCallBack)-> Void)?
-
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        callAPI()
+        getMeteors(filter: nil)
     }
     
-    func callAPI(){
-        
-        //Property Injection
-            
-        Service.instance.getMeteorListData { (meteorArr,meteorName, meteorYear,status,message) in
-                if status{
-                    guard let meteorArr = meteorArr else{return}
-                    self.meteorList = meteorArr
-                    self.metorNameArr = meteorName
-                    self.meteorYearArr = meteorYear
+    // Here get the new filter and call the getMeteors(filter)
+    // method with the new filters
+    // func calledOnSegmentChange or filterValueChnaged
+    // {
+    //    getMeteors(filter: newFilters)
+    // }
+    
+    
+    func getMeteors(filter: Int?) {
+        repository.getMeteors(filter: filter) { result in
+            switch result {
+            case.success(let meteors):
+                self.meteorList = meteors
+                DispatchQueue.main.async {
                     self.MeteorListTableView.reloadData()
                 }
+            case .failure(let error):
+                print(error)
             }
         }
-   }
+    }
+    
+}
 
 
 extension MeteorListVC: UITableViewDelegate, UITableViewDataSource{
@@ -49,21 +51,26 @@ extension MeteorListVC: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //
-        
         let cell = tableView.dequeueReusableCell(withIdentifier:"MeteorCell", for:indexPath)
         
         let meteorObjData = meteorList[indexPath.row]
-        let meteorYearData = meteorYearArr[indexPath.row]
+        
+        let formatter = DateFormatter.toStringFormatter
+        let meteorYearData = meteorList[indexPath.row].year ?? Date()
+        
         cell.textLabel?.text = meteorObjData.name
-        cell.detailTextLabel?.text = meteorYearData
+        cell.detailTextLabel?.text = formatter.string(from: meteorYearData)
         return cell
         
     }
     
-    
-    
-    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier:"MeteorCell", for:indexPath)
+//        let meteorObjData = viewModel[indexPath.row]
+//        cell.textLabel?.text = viewModel.name
+//        cell.detailTextLabel?.text = viewModel.subtitle
+//        return cell
+//    }
 }
 
 

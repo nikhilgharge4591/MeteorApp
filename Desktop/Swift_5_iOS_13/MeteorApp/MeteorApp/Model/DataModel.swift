@@ -7,27 +7,33 @@
 
 import Foundation
 
-struct Meteor: Decodable {
-    var name: String?
-    var weight: String?
-    var year:String?
-    var geolocation: geoLocation?
+struct Meteor: Codable {
+    var name: String
+//    var weight: Int?
+    var year: Date?
+    var geolocation: GeoLocation?
     
-    enum CodingKeys: String, CodingKey{
+    
+    enum CodingKeys: String, CodingKey {
         case name = "name"
-        case weight = "mass"
+//        case weight = "mass"
         case year = "year"
         case geolocation = "geolocation"
     }
 }
 
-struct geoLocation: Decodable{
-    var type: String?
-    var coordinates: [Double]?
+struct GeoLocation: Codable {
+    var type: String
+    var coordinates: [Double]
     
     enum CodingKeys: String, CodingKey{
         case type = "type"
         case coordinates = "coordinates"
     }
-    
+}
+
+
+struct Filter {
+    var year: Int
+    var size: Int
 }

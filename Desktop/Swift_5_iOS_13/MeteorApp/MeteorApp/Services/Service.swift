@@ -23,7 +23,7 @@ class Service{
     }
     
     func execute(completionHandler: @escaping MeteorsListCallBack){
-        var endPoint = "y77d-th95.json"
+        let endPoint = "y77d-th95.json"
         print(baseURL)
         AF.request(baseURL + endPoint, method:.get, parameters:nil, encoding:URLEncoding.default, headers:nil, interceptor:nil, requestModifier:nil).response { (responseData) in
             //
@@ -34,17 +34,17 @@ class Service{
                 return}
             do{
                 let meteorsArr = try JSONDecoder().decode([Meteor].self, from:data)
-                let coordinates = meteorsArr.compactMap{ $0.geolocation?.coordinates}
-                self.coordinatesArray.append(contentsOf: coordinates as [Any])
-                print("Meteor Objects == \(meteorsArr)")
-                for val in meteorsArr{
-                    let meteorYear = val.year ?? "0000"
-                    let year = String(meteorYear.prefix(4))
-                    if Int(year)! >= 1900{
-                        self.meteorName.append(val.name ?? "Not Available")
-                        self.meteorYear.append(year ?? "Not Available")
-                    }
-                }
+//                let coordinates = meteorsArr.compactMap{ $0.geolocation.coordinates}
+//                self.coordinatesArray.append(contentsOf: coordinates as [Any])
+//                print("Meteor Objects == \(meteorsArr)")
+//                for val in meteorsArr{
+//                    let meteorYear = val.year
+//                    let year = String(meteorYear.prefix(4))
+//                    if Int(year)! >= 1900{
+//                        self.meteorName.append(val.name ?? "Not Available")
+//                        self.meteorYear.append(year ?? "Not Available")
+//                    }
+//                }
                 
                 // Filter Data
                 
