@@ -14,6 +14,7 @@ class MeteorListVC: UIViewController {
     @IBOutlet weak var MeteorListTableView: UITableView!
     private var repository = MeteorRepository()
     var meteorList = [Meteor]()
+    private var selectedMeteor: Meteor!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,14 @@ class MeteorListVC: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showMapSegue") {
+            if let vc: MapViewController = segue.destination as? MapViewController {
+                vc.meteor = self.selectedMeteor
+            }
+        }
+    }
+    
 }
 
 
@@ -64,13 +73,19 @@ extension MeteorListVC: UITableViewDelegate, UITableViewDataSource{
         
     }
     
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier:"MeteorCell", for:indexPath)
-//        let meteorObjData = viewModel[indexPath.row]
-//        cell.textLabel?.text = viewModel.name
-//        cell.detailTextLabel?.text = viewModel.subtitle
-//        return cell
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.selectedMeteor = self.meteorList[indexPath.row]
+        self.performSegue(withIdentifier: "showMapSegue", sender: self)
+    }
+    
+    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //        let cell = tableView.dequeueReusableCell(withIdentifier:"MeteorCell", for:indexPath)
+    //        let meteorObjData = viewModel[indexPath.row]
+    //        cell.textLabel?.text = viewModel.name
+    //        cell.detailTextLabel?.text = viewModel.subtitle
+    //        return cell
+    //    }
 }
 
 

@@ -17,6 +17,8 @@
 		173AB5D92717328800E4526E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 173AB5D82717328800E4526E /* Alamofire */; };
 		173AB5DD2717333000E4526E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173AB5DC2717333000E4526E /* Service.swift */; };
 		DCBA9D7C2720A356000492A8 /* MeteorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA9D7B2720A356000492A8 /* MeteorRepository.swift */; };
+		DCD3B8882721F6A30080EFD3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD3B8872721F6A30080EFD3 /* MapKit.framework */; };
+		DCD3B88A2721F7050080EFD3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3B8892721F7050080EFD3 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		173AB5D32717311B00E4526E /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		173AB5DC2717333000E4526E /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		DCBA9D7B2720A356000492A8 /* MeteorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteorRepository.swift; sourceTree = "<group>"; };
+		DCD3B8872721F6A30080EFD3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DCD3B8892721F7050080EFD3 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCD3B8882721F6A30080EFD3 /* MapKit.framework in Frameworks */,
 				173AB5D92717328800E4526E /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,6 +56,7 @@
 				173AB5B127171ED200E4526E /* MeteorApp */,
 				173AB5C027171ED300E4526E /* Info.plist */,
 				173AB5B027171ED200E4526E /* Products */,
+				DCD3B8862721F6A30080EFD3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				173AB5B627171ED200E4526E /* MeteorListVC.swift */,
+				DCD3B8892721F7050080EFD3 /* MapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -116,6 +123,14 @@
 				DCBA9D7B2720A356000492A8 /* MeteorRepository.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		DCD3B8862721F6A30080EFD3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DCD3B8872721F6A30080EFD3 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +215,7 @@
 				DCBA9D7C2720A356000492A8 /* MeteorRepository.swift in Sources */,
 				173AB5B327171ED200E4526E /* AppDelegate.swift in Sources */,
 				173AB5B527171ED200E4526E /* SceneDelegate.swift in Sources */,
+				DCD3B88A2721F7050080EFD3 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

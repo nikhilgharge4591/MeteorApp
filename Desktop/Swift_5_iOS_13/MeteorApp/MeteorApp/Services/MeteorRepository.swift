@@ -30,9 +30,10 @@ class MeteorRepository {
             do {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-                let meteorsArr = try decoder.decode([Meteor].self, from:data)
+                var meteorsArr = try decoder.decode([Meteor].self, from:data)
                 
                 // Filter data here
+                meteorsArr = meteorsArr.filter { $0.geolocation != nil && $0.geolocation?.coordinates != nil }
                 
                 completionHandler(.success(meteorsArr))
             }
